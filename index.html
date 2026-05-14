@@ -1,0 +1,979 @@
+<!DOCTYPE html><html lang="fr"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merci ! Ton défi commence — Méthode Alif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Amiri:wght@400;700&amp;display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --blue: #2563eb;
+    --blue-deep: #1d4ed8;
+    --blue-50: #eff4ff;
+    --blue-100: #dbeafe;
+    --ink: #0f172a;
+    --ink-soft: #475569;
+    --ink-faint: #94a3b8;
+    --gray-50: #f5f7fa;
+    --gray-100: #eef2f7;
+    --gray-200: #e2e8f0;
+    --paper: #ffffff;
+    --green: #34d399;
+    --green-50: #d1fae5;
+    --green-deep: #047857;
+    --orange: #f59e0b;
+    --orange-50: #fef3c7;
+    --orange-deep: #b45309;
+    --shadow: 0 1px 2px rgba(15,23,42,.06), 0 8px 24px rgba(15,23,42,.06);
+    --shadow-blue: 0 1px 2px rgba(37,99,235,.2), 0 14px 32px rgba(37,99,235,.3);
+    --radius: 14px;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--gray-50); padding: 0;
+    color: var(--ink);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--paper);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 12px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+  }
+  .brand h1 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+  .brand small { color: var(--ink-faint); font-size: 13px; }
+
+  /* tone switcher in topbar */
+  .tone-switch {
+    display: flex; gap: 4px;
+    background: var(--gray-100); padding: 4px;
+    border-radius: 999px;
+  }
+  .tone-switch button {
+    background: transparent; border: none;
+    color: var(--ink-soft);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-family: inherit; font-size: 12px; font-weight: 600;
+    cursor: pointer;
+  }
+  .tone-switch button.on { background: white; color: var(--ink); box-shadow: var(--shadow); }
+  .tone-switch button .dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; vertical-align: middle;}
+  .tone-switch button[data-tone="doux"] .dot { background:#a78bfa; }
+  .tone-switch button[data-tone="direct"] .dot { background:#2563eb; }
+  .tone-switch button[data-tone="commu"] .dot { background:#10b981; }
+
+  .stage { max-width: 1080px; margin: 0 auto; padding: 24px 22px 80px; }
+
+  .meta { margin-bottom: 16px; }
+  .meta h2 { margin: 0 0 4px; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+  .meta .desc { color: var(--ink-soft); font-size: 14px; max-width: 760px; line-height: 1.5; }
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .badge {
+    border-radius: 999px;
+    padding: 4px 10px; font-size: 12px; font-weight: 600;
+    background: var(--gray-100); color: var(--ink-soft);
+  }
+  .badge.blue { background: var(--blue-50); color: var(--blue-deep); }
+  .badge.green { background: var(--green-50); color: var(--green-deep); }
+  .badge.orange { background: var(--orange-50); color: var(--orange-deep); }
+
+  .frame {
+    background: var(--paper);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--blue); color: white;
+    border: none; border-radius: 12px;
+    padding: 14px 22px;
+    font-family: inherit; font-weight: 700; font-size: 15px;
+    cursor: pointer;
+    box-shadow: var(--shadow-blue);
+    transition: transform .12s ease;
+    text-decoration: none;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn.huge { padding: 20px 28px; font-size: 17px; }
+  .btn.ghost { background: white; color: var(--ink); box-shadow: var(--shadow); }
+
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--blue-50); color: var(--blue-deep);
+    padding: 5px 12px; border-radius: 999px;
+    font-weight: 700; font-size: 12px;
+  }
+  .pill.green { background: var(--green-50); color: var(--green-deep); }
+  .pill.orange { background: var(--orange-50); color: var(--orange-deep); }
+
+  .stars { color: var(--orange); letter-spacing: 1px; font-size: 14px; }
+  .avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 2px solid white;
+    background: linear-gradient(135deg, var(--gray-200), var(--gray-100));
+  }
+
+  /* ===== EMAIL CONFIRMATION BANNER ===== */
+  .email-banner {
+    background: var(--green-50);
+    border-bottom: 1px solid #a7f3d0;
+    padding: 10px 24px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    color: var(--green-deep);
+    font-size: 13px; font-weight: 600;
+    flex-wrap: wrap;
+  }
+  .email-banner .check {
+    background: var(--green-deep); color: white;
+    width: 20px; height: 20px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800;
+    flex-shrink: 0;
+  }
+  .email-banner em { font-style: normal; color: var(--ink); }
+
+  /* ===== HERO VSL ===== */
+  .hero-vsl {
+    background:
+      radial-gradient(ellipse 800px 380px at 50% 0%, var(--blue-50), transparent 70%),
+      var(--paper);
+    padding: 48px 60px 40px;
+    text-align: center;
+  }
+  .hero-kicker {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--ink); color: white;
+    padding: 6px 14px; border-radius: 999px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
+    margin-bottom: 18px;
+  }
+  .hero-kicker .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.3); }
+  }
+  .hero-vsl h1 {
+    font-size: 44px; line-height: 1.05; font-weight: 800; letter-spacing: -0.025em;
+    margin: 0 0 14px;
+    max-width: 760px; margin-inline: auto;
+  }
+  .hero-vsl h1 .blue { color: var(--blue); }
+  .hero-vsl h1 em {
+    font-style: normal;
+    background: linear-gradient(180deg, transparent 65%, var(--orange-50) 65%);
+    padding: 0 4px;
+  }
+  .hero-vsl .lede {
+    font-size: 17px; line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0 auto 28px;
+    max-width: 600px;
+  }
+  .hero-vsl .lede strong { color: var(--ink); }
+
+  /* ===== VIDEO PLACEHOLDER ===== */
+  .video-wrap {
+    max-width: 820px; margin: 0 auto;
+    position: relative;
+  }
+  .video-frame {
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    border-radius: 16px;
+    box-shadow:
+      0 30px 60px -20px rgba(15,23,42,.4),
+      0 0 0 1px var(--gray-200);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .video-frame::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(37,99,235,.4), transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(245,158,11,.2), transparent 50%);
+  }
+  .video-frame::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .video-play {
+    position: absolute;
+    inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    gap: 18px;
+    color: white;
+    z-index: 2;
+  }
+  .play-btn {
+    width: 84px; height: 84px;
+    border-radius: 50%;
+    background: white;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,.4);
+    transition: transform .15s ease;
+  }
+  .video-frame:hover .play-btn { transform: scale(1.08); }
+  .play-btn::before {
+    content: "";
+    width: 0; height: 0;
+    margin-left: 6px;
+    border-left: 22px solid var(--blue);
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+  }
+  .video-meta {
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.95;
+  }
+  .video-meta strong { display: block; font-size: 16px; margin-bottom: 4px; }
+  .video-controls {
+    position: absolute; bottom: 14px; left: 14px; right: 14px;
+    display: flex; align-items: center; gap: 10px;
+    z-index: 3;
+    color: white; font-size: 12px;
+  }
+  .video-progress {
+    flex: 1; height: 4px;
+    background: rgba(255,255,255,.2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .video-progress > div {
+    width: 8%;
+    height: 100%;
+    background: var(--blue);
+  }
+  .video-tag {
+    background: var(--orange);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.5px;
+  }
+
+  .video-helper {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .video-helper strong { color: var(--ink); }
+  .video-helper .sep { color: var(--ink-faint); margin: 0 6px; }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    padding: 56px 60px;
+    border-top: 1px solid var(--gray-100);
+  }
+  .section.alt { background: var(--gray-50); }
+
+  .section-head { text-align: center; max-width: 720px; margin: 0 auto 36px; }
+  .section-head h2 {
+    margin: 12px 0 10px;
+    font-size: 34px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+    text-wrap: pretty;
+  }
+  .section-head h2 em {
+    font-style: normal;
+    background: linear-gradient(180deg, transparent 65%, var(--orange-50) 65%);
+    padding: 0 4px;
+  }
+  .section-head p {
+    color: var(--ink-soft);
+    font-size: 15px; line-height: 1.55;
+    margin: 0;
+  }
+
+  /* ===== WHAT'S NEXT (timeline 3 steps) ===== */
+  .next-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    counter-reset: nextstep;
+  }
+  .next-card {
+    background: var(--paper);
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    box-shadow: var(--shadow);
+  }
+  .next-card .num {
+    counter-increment: nextstep;
+    position: absolute;
+    top: -16px; left: 22px;
+    background: var(--blue); color: white;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800;
+    box-shadow: var(--shadow-blue);
+  }
+  .next-card .num::before { content: counter(nextstep); }
+  .next-card h3 {
+    margin: 8px 0 6px;
+    font-size: 17px; letter-spacing: -0.01em;
+  }
+  .next-card p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 14px; line-height: 1.55;
+  }
+  .next-card .when {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--blue-deep);
+    background: var(--blue-50);
+    padding: 4px 9px;
+    border-radius: 6px;
+  }
+
+  /* ===== PROBLEM / SOLUTION ===== */
+  .ps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .ps-card {
+    background: var(--paper);
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 28px;
+  }
+  .ps-card.bad { border-color: #fee2e2; background: #fef7f7; }
+  .ps-card.good { border-color: #a7f3d0; background: #f0fdf9; }
+  .ps-card h3 {
+    font-size: 16px;
+    margin: 0 0 14px;
+    display: flex; align-items: center; gap: 8px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .ps-card.bad h3 { color: #b91c1c; }
+  .ps-card.good h3 { color: var(--green-deep); }
+  .ps-card ul {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: grid; gap: 10px;
+  }
+  .ps-card li {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 14px; line-height: 1.5;
+    color: var(--ink);
+  }
+  .ps-card li::before {
+    flex-shrink: 0;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800;
+    margin-top: 1px;
+  }
+  .ps-card.bad li::before { content: "✕"; background: #fecaca; color: #b91c1c; }
+  .ps-card.good li::before { content: "✓"; background: var(--green); color: white; }
+
+  /* ===== BENEFITS ===== */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .benefit {
+    background: var(--paper);
+    border: 1px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 22px;
+    display: flex; gap: 14px;
+  }
+  .benefit-ico {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: var(--blue-50);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--blue);
+    font-family: 'Amiri', serif;
+    font-size: 22px; font-weight: 800;
+  }
+  .benefit h3 {
+    margin: 0 0 4px;
+    font-size: 15px; letter-spacing: -0.01em;
+  }
+  .benefit p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 13px; line-height: 1.5;
+  }
+
+  /* ===== COACHING OFFER ===== */
+  .coaching {
+    background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+    border-radius: 20px;
+    padding: 40px;
+    color: white;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 28px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .coaching::before {
+    content: "";
+    position: absolute;
+    right: -120px; top: -120px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,.15), transparent 65%);
+  }
+  .coaching-tag {
+    display: inline-block;
+    background: var(--orange); color: white;
+    font-size: 11px; font-weight: 800; letter-spacing: 1px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    margin-bottom: 14px;
+  }
+  .coaching h2 {
+    margin: 0 0 10px;
+    font-size: 28px; line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+  }
+  .coaching p {
+    margin: 0 0 18px;
+    opacity: 0.92;
+    font-size: 15px; line-height: 1.55;
+  }
+  .coaching .features {
+    list-style: none; padding: 0; margin: 0 0 22px;
+    display: grid; gap: 8px;
+  }
+  .coaching .features li {
+    display: flex; gap: 8px; align-items: center;
+    font-size: 14px;
+  }
+  .coaching .features li::before {
+    content: "✓";
+    background: rgba(255,255,255,.18);
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .coaching .visual {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 14px;
+    padding: 22px;
+    text-align: center;
+    backdrop-filter: blur(6px);
+    position: relative;
+  }
+  .coaching .visual .price-old {
+    text-decoration: line-through;
+    opacity: 0.6;
+    font-size: 14px;
+  }
+  .coaching .visual .price-new {
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin: 8px 0;
+  }
+  .coaching .visual .duration {
+    font-size: 12px; letter-spacing: 1px;
+    opacity: 0.85;
+    text-transform: uppercase;
+  }
+  .coaching .btn {
+    background: white; color: var(--ink); box-shadow: 0 8px 24px rgba(0,0,0,.2);
+  }
+
+  /* ===== TESTIMONIALS ===== */
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .testi {
+    background: var(--paper);
+    border: 1px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .testi-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 10px;
+  }
+  .testi-source {
+    font-size: 11px; font-weight: 700;
+    color: var(--green-deep);
+    background: var(--green-50);
+    padding: 3px 8px; border-radius: 6px;
+  }
+  .testi p {
+    color: var(--ink-soft);
+    font-size: 14px; line-height: 1.55;
+    margin: 0 0 14px;
+  }
+  .testi-who {
+    display: flex; gap: 10px; align-items: center;
+    border-top: 1px solid var(--gray-100);
+    padding-top: 12px;
+  }
+  .testi-who strong { font-size: 13px; display: block; }
+  .testi-who small { font-size: 11px; color: var(--ink-faint); }
+
+  /* ===== FAQ ===== */
+  .faq {
+    max-width: 760px; margin: 0 auto;
+    display: grid; gap: 10px;
+  }
+  .faq details {
+    background: var(--paper);
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 0;
+    overflow: hidden;
+  }
+  .faq summary {
+    list-style: none;
+    padding: 18px 22px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: "+";
+    color: var(--blue);
+    font-size: 22px; font-weight: 400;
+    flex-shrink: 0;
+    transition: transform .2s ease;
+  }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq details > div {
+    padding: 0 22px 18px;
+    color: var(--ink-soft);
+    font-size: 14px; line-height: 1.6;
+  }
+
+  /* ===== FINAL CTA ===== */
+  .final-cta {
+    background: var(--ink);
+    color: white;
+    padding: 56px 60px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .final-cta::before {
+    content: "";
+    position: absolute; right: -120px; top: -120px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, var(--blue), transparent 70%);
+    opacity: 0.4;
+  }
+  .final-cta h2 {
+    font-size: 34px; line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+    position: relative;
+    font-weight: 800;
+  }
+  .final-cta h2 em {
+    font-style: normal;
+    color: var(--orange);
+  }
+  .final-cta p {
+    color: rgba(255,255,255,.7);
+    margin: 0 auto 24px;
+    max-width: 520px;
+    font-size: 15px;
+    position: relative;
+  }
+  .final-cta .btn {
+    background: white; color: var(--ink); box-shadow: none;
+    position: relative;
+  }
+
+  /* ===== FINAL DARK CTA (style page capture) ===== */
+  .final-dark {
+    background: var(--ink);
+    color: white;
+    padding: 64px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-dark::before {
+    content: "";
+    position: absolute; right: -120px; top: 50%;
+    transform: translateY(-50%);
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, var(--blue), transparent 65%);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .final-dark-inner { position: relative; max-width: 600px; margin: 0 auto; }
+  .final-dark h2 {
+    font-size: 36px; line-height: 1.15;
+    font-weight: 800; letter-spacing: -0.02em;
+    margin: 0 0 12px;
+    color: white;
+  }
+  .final-dark h2 em { font-style: normal; color: var(--orange); }
+  .final-dark .sub {
+    color: rgba(255,255,255,.7);
+    margin: 0 auto 24px;
+    font-size: 14px;
+  }
+  .form-block.dark { display: grid; gap: 12px; max-width: 460px; margin: 0 auto; }
+  .form-block.dark .input {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    color: white;
+    text-align: center;
+  }
+  .form-block.dark .input::placeholder { color: rgba(255,255,255,.45); }
+  .btn.huge.invert {
+    background: white; color: var(--ink); box-shadow: 0 14px 40px rgba(0,0,0,.4);
+  }
+  .form-block.dark .micro { font-size: 12px; color: rgba(255,255,255,.55); text-align: center; }
+
+  /* ===== DISCOVER CTA ===== */
+  .discover-cta {
+    background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+    padding: 56px 60px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .discover-cta::before {
+    content: "";
+    position: absolute;
+    right: -150px; top: -150px;
+    width: 380px; height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,.15), transparent 65%);
+  }
+  .discover-inner {
+    position: relative;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .discover-cta h2 {
+    margin: 14px 0 12px;
+    font-size: 36px; line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+    color: white;
+  }
+  .discover-cta p {
+    margin: 0 auto 24px;
+    font-size: 15px; line-height: 1.6;
+    color: rgba(255,255,255,.85);
+    max-width: 540px;
+  }
+  .discover-cta .btn {
+    background: white; color: var(--ink); box-shadow: 0 8px 24px rgba(0,0,0,.2);
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    padding: 22px 60px;
+    border-top: 1px solid var(--gray-200);
+    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    font-size: 12px; color: var(--ink-faint); font-weight: 600;
+    background: var(--gray-50);
+  }
+  .footer .name { color: var(--ink); }
+  .footer .name b { color: var(--blue); }
+
+  /* ===== TONE OVERLAYS ===== */
+/* tone-aware copy: hide/show variants */
+  .copy.copy-doux, .copy.copy-commu { display: none; }
+
+  @media (max-width: 900px) {
+    .hero-vsl, .section, .final-cta, .site-footer { padding-left: 24px; padding-right: 24px; }
+    .hero-vsl { padding-top: 32px; }
+    .hero-vsl h1 { font-size: 32px; }
+    .next-grid, .ps-grid, .benefits-grid, .testi-grid { grid-template-columns: 1fr; }
+    .coaching { grid-template-columns: 1fr; padding: 28px; }
+    .section-head h2, .final-cta h2 { font-size: 26px; }
+    .site-footer-top { grid-template-columns: 1fr; gap: 28px; }
+  }
+
+  .page { background: var(--paper); max-width: 1200px; margin: 0 auto; box-shadow: 0 0 60px rgba(15,23,42,.06); }
+  @media (max-width: 900px) { .page { box-shadow: none; } }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+    <!-- ===== EMAIL CONFIRMATION BANNER ===== -->
+    <div class="email-banner">
+      <span class="check">✓</span>
+      <span>Tout est bon ! Ton ebook arrive dans <em>moins de 2 min</em> sur <em>ton email</em>. Pense à vérifier les spams.</span>
+    </div>
+
+    <!-- ===== HERO VSL ===== -->
+    <div class="hero-vsl">
+      <span class="hero-kicker"><span class="dot"></span>EN ATTENDANT TON EBOOK · 4 MIN DE VIDÉO</span>
+
+      <h1 class="copy copy-direct">Voici ton chemin vers la lecture 
+du Coran, pas à pas.</h1>
+      <h1 class="copy copy-doux">
+        Bismillah. Voici <em>ton chemin</em> vers la lecture du Coran, pas à pas.
+      </h1>
+      <h1 class="copy copy-commu">
+        Bienvenue dans <em>la famille</em> Méthode Alif. Voici ce qui t'attend.
+      </h1>
+
+      <p class="lede copy copy-direct">Je te montre comment une méthode simple peut tout changer.</p>
+      <p class="lede copy copy-doux">
+        Allah t'a guidé vers cette page pour une raison. Prends 4 minutes : je te montre comment ces 7 jours peuvent changer ta relation à Sa parole.
+      </p>
+      <p class="lede copy copy-commu">
+        Tu rejoins <strong>+4000 frères et sœurs</strong> qui ont relevé ce défi avant toi. Voici comment on s'entraide pour réussir ensemble.
+      </p>
+
+      <!-- VIDEO PLACEHOLDER -->
+      <div class="video-wrap">
+        <div class="video-frame">
+          <div class="video-play">
+            <div class="play-btn"></div>
+            <div class="video-meta">
+              <strong>Présentation de la Methode Alif</strong>
+              <span>par Nabil · 4 min 12 s</span>
+            </div>
+          </div>
+          <div class="video-controls">
+            <span class="video-tag">▶ REGARDER</span>
+            <div class="video-progress"><div></div></div>
+            <span>0:20 / 4:12</span>
+          </div>
+        </div>
+        <p class="video-helper">
+          🔊 <strong>Active le son.</strong> <span class="sep">·</span> La vidéo dure <strong>4 minutes</strong>, le temps que ton ebook arrive.
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== WHAT'S NEXT — 3 STEPS ===== -->
+    <div class="section">
+      <div class="section-head">
+        <span class="pill">★ CE QUI VA SE PASSER</span>
+        <h2>Tes <em>3 prochaines étapes</em>.</h2>
+        <p>Voici exactement ce qu'il va se passer dans les minutes et les jours qui viennent.</p>
+      </div>
+      <div class="next-grid">
+        <div class="next-card">
+          <div class="num"></div>
+          <h3>Récupère ton ebook</h3>
+          <p>Vérifie ta boîte mail (et tes spams). 
+Le PDF "Apprendre à lire l'arabe"  arrive en moins de 2 min.</p>
+          <span class="when">DANS 2 MIN</span>
+        </div>
+        <div class="next-card">
+          <div class="num"></div>
+          <h3>Jour 1-6</h3>
+          <p>Tu reçois tes première leçons par email.  20 minutes par jour et des exercices à réaliser . </p>
+          <span class="when">DEMAIN · 7H00</span>
+        </div>
+        <div class="next-card">
+          <div class="num"></div>
+          <h3>Jour 7 : tu  lis</h3>
+          <p>Tu lis directement tes premiers mots, sans phonétique.  
+Incha Allah !!!</p>
+          <span class="when">DANS 7 JOURS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PROBLEM / SOLUTION ===== -->
+    <div class="section alt">
+      <div class="section-head">
+        <span class="pill orange">✦ LE PROBLÈME · LA SOLUTION</span>
+        <h2 class="copy copy-direct">Pourquoi 90% abandonnent 
+Et pourquoi ce ne sera pas ton cas.</h2>
+        <h2 class="copy copy-doux">Le piège que <em>chaque débutant</em> connaît.</h2>
+        <h2 class="copy copy-commu">Tu n'es pas <em>seul</em> à galérer.</h2>
+        <p class="copy copy-direct">Apprendre à lire l'arabe seul, c'est un labyrinthe.
+La méthode Alif a été pensée pour t'éviter les pièges classiques.</p>
+        <p class="copy copy-doux">Le savoir est une lumière. Mais sans guide, beaucoup se perdent dans le détail. Voici comment on revient à l'essentiel.</p>
+        <p class="copy copy-commu">Plus de 4000 frères et sœurs sont passés par là. Et ensemble, on a compris ce qui bloque vraiment.</p>
+      </div>
+      <div class="ps-grid">
+        <div class="ps-card bad">
+          <h3>✕ Sans méthode</h3>
+          <ul>
+            <li>Tu apprends 28 lettres en vrac, sans logique</li>
+            <li>Tu confonds les lettres similaires (ب ت ث) au bout de 2 jours</li>
+            <li>Tu lis encore en phonétique 3 ans plus tard</li>
+            <li>Tu te démotives parce que tu ne vois pas tes progrès</li>
+            <li>Tu ouvres ton moushaf et tu refermes aussitôt</li>
+          </ul>
+        </div>
+        <div class="ps-card good">
+          <h3>✓ Avec la Méthode Alif</h3>
+          <ul>
+            <li>Tu apprends par groupes logiques (lettres qui se ressemblent ensemble)</li>
+            <li>Tu lis ton premier mot dès le 7ème  jour </li>
+            <li>20 minutes par jour suffisent · pas besoin de bloquer ton  agenda</li>
+            <li>Tu es accompagné par email chaque jour </li>
+            <li>Tu progresses visiblement, jour après jour</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== BENEFITS ===== -->
+    <div class="section">
+      <div class="section-head">
+        <span class="pill green">✓ CE QUE TU VAS APPRENDRE</span>
+        <h2>Dans les 7 jours, tu vas <em>maîtriser</em>.</h2>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit">
+          <div class="benefit-ico">ا</div>
+          <div>
+            <h3>Reconnaître les 7 premières lettres</h3>
+            <p>Alif, Bâ, Tâ, Thâ, Jîm, Hâ, Khâ. 
+Sans hésitation, dans toutes leurs positions.</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-ico">◌َ</div>
+          <div>
+            <h3>Comprendre les voyelles courtes</h3>
+            <p>Fatha, Damma, Kasra. Comment elles se prononcent, comment elles changent un mot.</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-ico">★</div>
+          <div>
+            <h3>La phonétique c'est fini !!</h3>
+            <p>Avec ce défi tu comprends que lire l'arabe c'est possible avec une bonne prononciation.</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-ico">⏱</div>
+          <div>
+            <h3>Une routine de 15 min/jour</h3>
+            <p>Une habitude tenable. Sans stress ni pression.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <div class="section">
+      <div class="section-head">
+        <span class="pill green">★ AVIS</span>
+        <h2>Ils ont relevé le défi <em>avant toi</em>.</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi">
+          <div class="testi-head">
+            <span class="stars">★★★★★</span>
+            <span class="testi-source">✓ Trustpilot</span>
+          </div>
+          <p>« J'ai testé 3 méthodes avant celle-là. C'est celle la qui m'a fait lire mes premiers mots du Coran sans phonétique.»</p>
+          <div class="testi-who">
+            <div class="avatar"></div>
+            <div><strong>Yacine B.</strong><small>14 mars 2025</small></div>
+          </div>
+        </div>
+        <div class="testi">
+          <div class="testi-head">
+            <span class="stars">★★★★★</span>
+            <span class="testi-source">✓ Trustpilot</span>
+          </div>
+          <p>« Très accessible, simplifié, avec des exemples à l'appui. Le coaching offert au début m'a vraiment aidée à me lancer sans stress. »</p>
+          <div class="testi-who">
+            <div class="avatar"></div>
+            <div><strong>Mahamat B.</strong><small>12 avril 2025</small></div>
+          </div>
+        </div>
+        <div class="testi">
+          <div class="testi-head">
+            <span class="stars">★★★★★</span>
+            <span class="testi-source">✓ Trustpilot</span>
+          </div>
+          <p>« 20 min par jour, j'aurais jamais pensé que ça suffisait. Je lis les sourates aujourd'hui sans la phonétique. Alhamdulillah. »</p>
+          <div class="testi-who">
+            <div class="avatar"></div>
+            <div><strong>Sofia M.</strong><small>2 mai 2025</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== FINAL CTA DARK ===== -->
+    <div class="final-dark">
+      <div class="final-dark-inner">
+        <span class="pill orange" style="margin-bottom: 14px;">★ POUR ALLER PLUS LOIN</span>
+        <h2>Et après <em>les 7 jours</em> ?</h2>
+        <p class="sub">Si le défi t'a plu, la formation complète te fait passer de débutant à lecteur autonome 
+du Coran en 60 jours.</p>
+        <a class="btn huge invert" href="#">Découvrir la formation →</a>
+      </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="footer">
+      <span class="name">Méthode <b>Alif</b></span>
+      <span>★ Trustpilot 4,4/5</span>
+      <span>contact · mentions légales · RGPD</span>
+        </div>
+
+<script>
+  // tone switcher removed (direct only)
+
+  // fake video play (placeholder)
+  const vf = document.querySelector('.video-frame');
+  if (vf) vf.addEventListener('click', () => {
+    alert('Placeholder vidéo · à remplacer par ta vraie VSL (4 min) lorsqu\'elle est prête.');
+  });
+</script>
+
+</body></html>
+
+<style id="__om-edit-overrides">
+.next-card >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >span { margin: 1.06836px !important }
+.next-card >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >span { margin: 5px 1.06836px 1.06836px !important }
+</style>
