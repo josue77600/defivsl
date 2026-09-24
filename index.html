@@ -4,8 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Merci ! Ton défi commence — Méthode Alif</title>
-<meta name="description" content="Félicitations ! Tu es inscrit au Défi 6 lettres. Voici ce qui t'attend.">
+<meta name="description" content="Félicitations ! Tu es inscrit au défi 7 jours de la Méthode Alif. Voici ce qui t'attend.">
 <meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="https://www.methode-alif.com/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
@@ -19,10 +20,13 @@
   --shadow: 0 1px 2px rgba(15,23,42,.06), 0 8px 24px rgba(15,23,42,.06);
   --shadow-blue: 0 1px 2px rgba(37,99,235,.2), 0 14px 32px rgba(37,99,235,.3);
   --radius: 14px;
+  --max: 1060px;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-body { background: var(--gray-50); color: var(--ink); font-family: 'Plus Jakarta Sans', system-ui, sans-serif; min-height: 100vh; }
+body { background: var(--gray-50); color: var(--ink); font-family: 'Plus Jakarta Sans', system-ui, sans-serif; min-height: 100vh; overflow-x: hidden; }
+img { max-width: 100%; }
+
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--blue); color: white; border: none; border-radius: 12px; padding: 14px 22px; font-family: inherit; font-weight: 700; font-size: 15px; cursor: pointer; box-shadow: var(--shadow-blue); transition: transform .12s ease; text-decoration: none; }
 .btn:hover { transform: translateY(-1px); }
 .btn.huge { padding: 20px 28px; font-size: 17px; }
@@ -31,75 +35,115 @@ body { background: var(--gray-50); color: var(--ink); font-family: 'Plus Jakarta
 .pill.green { background: var(--green-50); color: var(--green-deep); }
 .pill.orange { background: var(--orange-50); color: var(--orange-deep); }
 .stars { color: var(--orange); letter-spacing: 1px; font-size: 14px; }
-.email-banner { background: var(--green-50); border-bottom: 1px solid #a7f3d0; padding: 10px 24px; display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--green-deep); font-size: 13px; font-weight: 600; flex-wrap: wrap; }
+
+.email-banner { background: var(--green-50); border-bottom: 1px solid #a7f3d0; padding: 11px 20px; display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--green-deep); font-size: 13px; font-weight: 600; flex-wrap: wrap; text-align: center; line-height: 1.45; }
 .email-banner .check { background: var(--green-deep); color: white; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; }
 .email-banner em { font-style: normal; color: var(--ink); }
-.hero-vsl { background: radial-gradient(ellipse 800px 380px at 50% 0%, var(--blue-50), transparent 70%), var(--paper); padding: 48px 60px 40px; text-align: center; }
-.hero-kicker { display: inline-flex; align-items: center; gap: 6px; background: var(--ink); color: white; padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 18px; }
-.hero-kicker .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+
+.hero-vsl { background: radial-gradient(ellipse 800px 380px at 50% 0%, var(--blue-50), transparent 70%), var(--paper); padding: 44px 24px 40px; text-align: center; }
+.hero-vsl > * { max-width: var(--max); margin-inline: auto; }
+.hero-kicker { display: inline-flex; align-items: center; gap: 6px; background: var(--ink); color: white; padding: 6px 14px; border-radius: 999px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 18px; line-height: 1.4; }
+.hero-kicker .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; flex: none; }
 @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.3); } }
-.hero-vsl h1 { font-size: 44px; line-height: 1.05; font-weight: 800; letter-spacing: -0.025em; margin: 0 0 14px; max-width: 760px; margin-inline: auto; }
-.hero-vsl .lede { font-size: 17px; line-height: 1.55; color: var(--ink-soft); margin: 0 auto 28px; max-width: 600px; }
+.hero-vsl h1 { font-size: clamp(27px, 5.2vw, 44px); line-height: 1.08; font-weight: 800; letter-spacing: -0.025em; margin: 0 0 14px; max-width: 760px; }
+.hero-vsl .lede { font-size: clamp(15px, 2.2vw, 17px); line-height: 1.55; color: var(--ink-soft); margin: 0 auto 26px; max-width: 600px; }
 .video-wrap { max-width: 820px; margin: 0 auto; }
 .video-container { position: relative; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px -20px rgba(15,23,42,.4), 0 0 0 1px var(--gray-200); }
 .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-.video-helper { text-align: center; margin-top: 20px; font-size: 13px; color: var(--ink-soft); }
+.video-helper { text-align: center; margin-top: 18px; font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
 .video-helper strong { color: var(--ink); }
 .video-helper .sep { color: var(--ink-faint); margin: 0 6px; }
-.section { padding: 56px 60px; border-top: 1px solid var(--gray-100); }
+
+.section { padding: 56px 24px; border-top: 1px solid var(--gray-100); }
+.section > * { max-width: var(--max); margin-inline: auto; }
 .section.alt { background: var(--gray-50); }
 .section-head { text-align: center; max-width: 720px; margin: 0 auto 36px; }
-.section-head h2 { margin: 12px 0 10px; font-size: 34px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 800; }
+.section-head h2 { margin: 12px 0 10px; font-size: clamp(23px, 3.6vw, 34px); line-height: 1.15; letter-spacing: -0.02em; font-weight: 800; }
 .section-head h2 em { font-style: normal; background: linear-gradient(180deg, transparent 65%, var(--orange-50) 65%); padding: 0 4px; }
 .section-head p { color: var(--ink-soft); font-size: 15px; line-height: 1.55; margin: 0; }
-.next-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: nextstep; }
-.next-card { background: var(--paper); border: 1px solid var(--gray-200); border-radius: 16px; padding: 24px; position: relative; box-shadow: var(--shadow); }
+
+.next-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; counter-reset: nextstep; }
+.next-card { background: var(--paper); border: 1px solid var(--gray-200); border-radius: 16px; padding: 26px 24px 24px; position: relative; box-shadow: var(--shadow); }
 .next-card .num { counter-increment: nextstep; position: absolute; top: -16px; left: 22px; background: var(--blue); color: white; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; box-shadow: var(--shadow-blue); }
 .next-card .num::before { content: counter(nextstep); }
 .next-card h3 { margin: 8px 0 6px; font-size: 17px; letter-spacing: -0.01em; }
 .next-card p { margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.55; }
 .next-card .when { display: inline-block; margin-top: 12px; font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--blue-deep); background: var(--blue-50); padding: 4px 9px; border-radius: 6px; }
-.ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.ps-card { background: var(--paper); border: 1px solid var(--gray-200); border-radius: 16px; padding: 28px; }
+
+.ps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.ps-card { background: var(--paper); border: 1px solid var(--gray-200); border-radius: 16px; padding: 26px 24px; }
 .ps-card.bad { border-color: #fee2e2; background: #fef7f7; }
 .ps-card.good { border-color: #a7f3d0; background: #f0fdf9; }
-.ps-card h3 { font-size: 16px; margin: 0 0 14px; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; text-transform: uppercase; }
+.ps-card h3 { font-size: 15px; margin: 0 0 14px; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; text-transform: uppercase; }
 .ps-card.bad h3 { color: #b91c1c; }
 .ps-card.good h3 { color: var(--green-deep); }
-.ps-card ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.ps-card ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 11px; }
 .ps-card li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: var(--ink); }
 .ps-card li::before { flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; margin-top: 1px; }
 .ps-card.bad li::before { content: "✕"; background: #fecaca; color: #b91c1c; }
 .ps-card.good li::before { content: "✓"; background: var(--green); color: white; }
-.benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+.benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; }
 .benefit { background: var(--paper); border: 1px solid var(--gray-200); border-radius: 14px; padding: 22px; display: flex; gap: 14px; }
 .benefit-ico { flex-shrink: 0; width: 44px; height: 44px; border-radius: 10px; background: var(--blue-50); display: flex; align-items: center; justify-content: center; color: var(--blue); font-family: 'Amiri', serif; font-size: 22px; font-weight: 800; }
 .benefit h3 { margin: 0 0 4px; font-size: 15px; letter-spacing: -0.01em; }
-.benefit p { margin: 0; color: var(--ink-soft); font-size: 13px; line-height: 1.5; }
-.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.benefit p { margin: 0; color: var(--ink-soft); font-size: 13.5px; line-height: 1.5; }
+
+.author { background: var(--ink); color: white; border-radius: 22px; padding: 34px 32px; display: flex; gap: 28px; align-items: center; position: relative; overflow: hidden; }
+.author::before { content: ""; position: absolute; right: -110px; top: -110px; width: 360px; height: 360px; background: radial-gradient(circle, var(--blue), transparent 70%); opacity: .45; pointer-events: none; }
+.author > * { position: relative; }
+.author img { width: 132px; height: 132px; border-radius: 50%; object-fit: cover; border: 4px solid rgba(255,255,255,.9); flex: none; display: block; }
+.author h3 { margin: 0 0 4px; font-size: 21px; color: white; letter-spacing: -0.01em; }
+.author .role { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--orange); text-transform: uppercase; margin: 0 0 12px; }
+.author p { margin: 0 0 10px; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,.85); }
+.author p strong { color: white; }
+.author .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.author .tag { background: rgba(255,255,255,.1); color: rgba(255,255,255,.85); padding: 6px 12px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: .5px; }
+
+.testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(265px, 1fr)); gap: 16px; }
 .testi { background: var(--paper); border: 1px solid var(--gray-200); border-radius: 14px; padding: 22px; }
-.testi-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-.testi-source { font-size: 11px; font-weight: 700; color: var(--green-deep); background: var(--green-50); padding: 3px 8px; border-radius: 6px; }
+.testi-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 10px; }
+.testi-source { font-size: 11px; font-weight: 700; color: var(--green-deep); background: var(--green-50); padding: 3px 8px; border-radius: 6px; white-space: nowrap; }
 .testi p { color: var(--ink-soft); font-size: 14px; line-height: 1.55; margin: 0 0 14px; }
 .testi-who { display: flex; gap: 10px; align-items: center; border-top: 1px solid var(--gray-100); padding-top: 12px; }
-.testi-who .avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--gray-200), var(--gray-100)); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: var(--ink-soft); }
+.testi-who .avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--gray-200), var(--gray-100)); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: var(--ink-soft); flex: none; }
 .testi-who strong { font-size: 13px; display: block; }
 .testi-who small { font-size: 11px; color: var(--ink-faint); }
-.final-dark { background: var(--ink); color: white; padding: 64px 60px; text-align: center; position: relative; overflow: hidden; }
+.trust-line { text-align: center; margin-top: 22px; font-size: 13px; color: var(--ink-soft); font-weight: 600; }
+.trust-line a { color: var(--blue-deep); text-decoration: none; }
+.trust-line a:hover { text-decoration: underline; }
+
+.final-dark { background: var(--ink); color: white; padding: 64px 24px; text-align: center; position: relative; overflow: hidden; }
 .final-dark::before { content: ""; position: absolute; right: -120px; top: 50%; transform: translateY(-50%); width: 420px; height: 420px; background: radial-gradient(circle, var(--blue), transparent 65%); opacity: 0.5; pointer-events: none; }
 .final-dark-inner { position: relative; max-width: 600px; margin: 0 auto; }
-.final-dark h2 { font-size: 36px; line-height: 1.15; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 12px; color: white; }
+.final-dark h2 { font-size: clamp(24px, 3.8vw, 36px); line-height: 1.15; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 12px; color: white; }
 .final-dark h2 em { font-style: normal; color: var(--orange); }
-.final-dark .sub { color: rgba(255,255,255,.7); margin: 0 auto 24px; font-size: 14px; }
-.footer { padding: 22px 60px; border-top: 1px solid var(--gray-200); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 12px; color: var(--ink-faint); font-weight: 600; background: var(--gray-50); }
+.final-dark .sub { color: rgba(255,255,255,.72); margin: 0 auto 24px; font-size: 15px; line-height: 1.6; }
+
+.footer { border-top: 1px solid var(--gray-200); background: var(--gray-50); padding: 22px 24px 34px; }
+.footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 12px; color: var(--ink-faint); font-weight: 600; }
 .footer .name { color: var(--ink); }
 .footer .name b { color: var(--blue); }
-@media (max-width: 900px) {
-  .hero-vsl, .section, .final-dark, .footer { padding-left: 24px; padding-right: 24px; }
-  .hero-vsl { padding-top: 32px; }
-  .hero-vsl h1 { font-size: 32px; }
-  .next-grid, .ps-grid, .benefits-grid, .testi-grid { grid-template-columns: 1fr; }
-  .section-head h2, .final-dark h2 { font-size: 26px; }
+.footer a { color: var(--ink-faint); text-decoration: none; }
+.footer a:hover { color: var(--blue); text-decoration: underline; }
+
+@media (max-width: 760px) {
+  .author { flex-direction: column; text-align: center; padding: 30px 22px; gap: 20px; }
+  .author img { width: 118px; height: 118px; margin: 0 auto; }
+  .author .tags { justify-content: center; }
+}
+@media (max-width: 600px) {
+  .email-banner { font-size: 12.5px; padding: 10px 16px; }
+  .hero-vsl { padding: 30px 18px 32px; }
+  .hero-kicker { font-size: 10.5px; padding: 6px 12px; }
+  .section { padding: 42px 18px; }
+  .section-head { margin-bottom: 26px; }
+  .video-container { border-radius: 12px; box-shadow: 0 16px 34px -14px rgba(15,23,42,.38), 0 0 0 1px var(--gray-200); }
+  .video-helper { font-size: 12.5px; }
+  .next-card, .ps-card, .benefit, .testi { padding: 20px; }
+  .final-dark { padding: 48px 18px; }
+  .btn.huge { width: 100%; padding: 18px 20px; font-size: 16px; }
+  .footer-inner { flex-direction: column; text-align: center; gap: 9px; }
 }
 </style>
 </head>
@@ -107,12 +151,12 @@ body { background: var(--gray-50); color: var(--ink); font-family: 'Plus Jakarta
 
 <div class="email-banner">
   <span class="check">✓</span>
-  <span>Tout est bon ! Ton ebook arrive dans <em>moins de 2 min</em> sur <em>ton email</em>. Pense à vérifier les spams.</span>
+  <span>Tout est bon ! Ton ebook arrive dans <em>moins de 2 min</em> sur <em>ton email</em>. Pense à vérifier tes spams.</span>
 </div>
 
 <div class="hero-vsl">
   <span class="hero-kicker"><span class="dot"></span>EN ATTENDANT TON EBOOK · 4 MIN DE VIDÉO</span>
-  <h1>Voici&nbsp;ton chemin&nbsp;vers la lecture&nbsp;du Coran, pas à pas.</h1>
+  <h1>Voici ton chemin vers la lecture du Coran, pas à pas.</h1>
   <p class="lede">Je te montre comment une méthode simple peut tout changer.</p>
 
   <!-- VIDEO YOUTUBE INTÉGRÉE -->
@@ -121,6 +165,7 @@ body { background: var(--gray-50); color: var(--ink); font-family: 'Plus Jakarta
       <iframe
         src="https://www.youtube.com/embed/N559J0u5SFs?rel=0&modestbranding=1"
         title="Présentation Méthode Alif"
+        loading="lazy"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
       </iframe>
@@ -138,37 +183,37 @@ body { background: var(--gray-50); color: var(--ink); font-family: 'Plus Jakarta
     <p>Voici exactement ce qu'il va se passer dans les minutes et les jours qui viennent.</p>
   </div>
   <div class="next-grid">
-    <div class="next-card"><div class="num"></div><h3>Récupère ton ebook</h3><p>Vérifie ta boîte mail (et tes spams). Le PDF "Apprendre à lire l'arabe" arrive en moins de 2 min.</p><span class="when">DANS 2 MIN</span></div>
-    <div class="next-card"><div class="num"></div><h3>Jour 1-6</h3><p>Tu reçois tes premières leçons par email. 20 minutes par jour et des exercices à réaliser.</p><span class="when">DEMAIN · 7H00</span></div>
-    <div class="next-card"><div class="num"></div><h3>Jour 7 : tu lis</h3><p>Tu lis directement tes premiers mots, sans phonétique. Incha Allah !!!</p><span class="when">DANS 7 JOURS</span></div>
+    <div class="next-card"><div class="num"></div><h3>Récupère ton ebook</h3><p>Vérifie ta boîte mail, et tes spams. Le PDF « Apprendre à lire l'arabe » arrive en moins de 2 minutes.</p><span class="when">DANS 2 MIN</span></div>
+    <div class="next-card"><div class="num"></div><h3>Jour 1 à 6</h3><p>Tu reçois tes leçons par email, une par jour. 25 minutes de travail et des exercices à réaliser.</p><span class="when">DÈS DEMAIN</span></div>
+    <div class="next-card"><div class="num"></div><h3>Jour 7 : tu lis</h3><p>Tu lis tes premiers mots directement en arabe, sans phonétique. In châ Allah.</p><span class="when">DANS 7 JOURS</span></div>
   </div>
 </div>
 
 <div class="section alt">
   <div class="section-head">
     <span class="pill orange">✦ LE PROBLÈME · LA SOLUTION</span>
-    <h2>Pourquoi 90% abandonnent Et pourquoi ce ne sera pas ton cas.</h2>
-    <p>Apprendre à lire l'arabe seul, c'est un labyrinthe. La méthode Alif a été pensée pour t'éviter les pièges classiques.</p>
+    <h2>Pourquoi tant de débutants abandonnent, <em>et pourquoi ce ne sera pas ton cas</em>.</h2>
+    <p>Apprendre à lire l'arabe seul, c'est un labyrinthe. La Méthode Alif a été pensée pour t'éviter les pièges classiques.</p>
   </div>
   <div class="ps-grid">
     <div class="ps-card bad">
       <h3>✕ Sans méthode</h3>
       <ul>
         <li>Tu apprends 28 lettres en vrac, sans logique</li>
-        <li>Tu confonds les lettres similaires (ب ت ث) au bout de 2 jours</li>
+        <li>Tu confonds les lettres qui se ressemblent (ب ت ث) au bout de 2 jours</li>
         <li>Tu lis encore en phonétique 3 ans plus tard</li>
         <li>Tu te démotives parce que tu ne vois pas tes progrès</li>
-        <li>Tu ouvres ton moushaf et tu refermes aussitôt</li>
+        <li>Tu ouvres ton moushaf et tu le refermes aussitôt</li>
       </ul>
     </div>
     <div class="ps-card good">
       <h3>✓ Avec la Méthode Alif</h3>
       <ul>
-        <li>Tu apprends par groupes logiques (lettres qui se ressemblent ensemble)</li>
-        <li>Tu lis ton premier mot dès le 7ème jour</li>
-        <li>20 minutes par jour suffisent · pas besoin de bloquer ton agenda</li>
+        <li>Tu apprends par groupes logiques, les lettres qui se ressemblent ensemble</li>
+        <li>Tu lis ton premier mot dès le 7<sup>e</sup> jour</li>
+        <li>25 minutes par jour suffisent, sans bloquer ton agenda</li>
         <li>Tu es accompagné par email chaque jour</li>
-        <li>Tu progresses visiblement, jour après jour</li>
+        <li>Tu vois tes progrès, jour après jour</li>
       </ul>
     </div>
   </div>
@@ -182,8 +227,26 @@ body { background: var(--gray-50); color: var(--ink); font-family: 'Plus Jakarta
   <div class="benefits-grid">
     <div class="benefit"><div class="benefit-ico">ا</div><div><h3>Reconnaître les 7 premières lettres</h3><p>Alif, Bâ, Tâ, Thâ, Jîm, Hâ, Khâ. Sans hésitation, dans toutes leurs positions.</p></div></div>
     <div class="benefit"><div class="benefit-ico">◌َ</div><div><h3>Comprendre les voyelles courtes</h3><p>Fatha, Damma, Kasra. Comment elles se prononcent, comment elles changent un mot.</p></div></div>
-    <div class="benefit"><div class="benefit-ico">★</div><div><h3>La phonétique c'est fini !!</h3><p>Avec ce défi tu comprends que lire l'arabe c'est possible avec une bonne prononciation.</p></div></div>
-    <div class="benefit"><div class="benefit-ico">⏱</div><div><h3>Une routine de 15 min/jour</h3><p>Une habitude tenable. Sans stress ni pression.</p></div></div>
+    <div class="benefit"><div class="benefit-ico">★</div><div><h3>Te passer de la phonétique</h3><p>Tu comprends que lire l'arabe est à ta portée, avec une prononciation correcte.</p></div></div>
+    <div class="benefit"><div class="benefit-ico">⏱</div><div><h3>Une routine de 25 min par jour</h3><p>Une habitude tenable. Sans stress ni pression.</p></div></div>
+  </div>
+</div>
+
+<div class="section alt">
+  <div class="author">
+    <img src="https://www.methode-alif.com/nabil-2.jpg" alt="Nabil, fondateur de la Méthode Alif" width="132" height="132">
+    <div>
+      <h3>Nabil</h3>
+      <p class="role">Fondateur de la Méthode Alif</p>
+      <p>J'ai cherché longtemps comment rendre la lecture de l'arabe simple pour des adultes qui partent de zéro : c'est de là qu'est née la <strong>Méthode Alif</strong>.</p>
+      <p>Pendant ces 7 jours, <strong>c'est moi qui t'écris</strong>. Réponds-moi quand tu bloques, je lis tous les messages.</p>
+      <div class="tags">
+        <span class="tag">IJAZA EN TAJWID</span>
+        <span class="tag">5 ANS D'ENSEIGNEMENT</span>
+        <span class="tag">108 000 ABONNÉS</span>
+        <span class="tag">+5 000 TÉLÉCHARGEMENTS</span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -197,21 +260,28 @@ body { background: var(--gray-50); color: var(--ink); font-family: 'Plus Jakarta
     <div class="testi"><div class="testi-head"><span class="stars">★★★★★</span><span class="testi-source">✓ Trustpilot</span></div><p>« Très accessible, simplifié, avec des exemples à l'appui. Le coaching offert au début m'a vraiment aidée à me lancer sans stress. »</p><div class="testi-who"><div class="avatar">MB</div><div><strong>Mahamat B.</strong><small>12 avril 2025</small></div></div></div>
     <div class="testi"><div class="testi-head"><span class="stars">★★★★★</span><span class="testi-source">✓ Trustpilot</span></div><p>« 20 min par jour, j'aurais jamais pensé que ça suffisait. Je lis les sourates aujourd'hui sans la phonétique. Alhamdulillah. »</p><div class="testi-who"><div class="avatar">SM</div><div><strong>Sofia M.</strong><small>2 mai 2025</small></div></div></div>
   </div>
+  <p class="trust-line">★ <strong>4,5/5</strong> sur <a href="https://fr.trustpilot.com/review/methode-alif.com" target="_blank" rel="noopener">Trustpilot</a></p>
 </div>
 
 <div class="final-dark">
   <div class="final-dark-inner">
     <span class="pill orange" style="margin-bottom:14px;">★ POUR ALLER PLUS LOIN</span>
     <h2>Et après <em>les 7 jours</em> ?</h2>
-    <p class="sub">Si le défi t'a plu, la formation complète te fait passer de débutant à lecteur autonome du Coran en 60 jours.</p>
+    <p class="sub">Si le défi te plaît, la formation complète te fait passer de débutant à lecteur autonome du Coran en 60 jours.</p>
     <a class="btn huge invert" href="https://www.methode-alif.com/" target="_blank" rel="noopener">Découvrir la formation →</a>
   </div>
 </div>
 
 <div class="footer">
-  <span class="name">Méthode <b>Alif</b></span>
-  <span>★ Trustpilot 4,4/5</span>
-  <span>contact · mentions légales · RGPD</span>
+  <div class="footer-inner">
+    <span class="name">Méthode <b>Alif</b></span>
+    <span>★ Trustpilot 4,5/5</span>
+    <span>
+      <a href="mailto:contact@methode-alif.com">Contact</a> ·
+      <a href="https://www.methode-alif.com/mentions-legales.html">Mentions légales</a> ·
+      <a href="https://www.methode-alif.com/confidentialite.html">Confidentialité</a>
+    </span>
+  </div>
 </div>
 
 </body>
